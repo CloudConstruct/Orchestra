@@ -8,7 +8,7 @@
     <Authors>kyokunnodenwa</Authors>
     <Company>kyokunnodenwa</Company>
 
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
