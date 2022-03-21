@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Harmonic\Harmonic.csproj" />
+    <ProjectReference Include="..\Orchestra\Orchestra.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,11 @@
 ﻿using Autofac;
-using Orchestra.Hosting;
 
-namespace demo
+namespace Orchestra.Hosting
 {
-    class Startup : IStartup
+    internal class EmptyStartup : IStartup
     {
         public void ConfigureServices(ContainerBuilder builder)
         {
-
         }
     }
 }

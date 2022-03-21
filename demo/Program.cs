@@ -1,22 +1,21 @@
-﻿using Harmonic.Hosting;
-using System;
+﻿using Orchestra.Hosting;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace demo
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] _)
         {
-            RtmpServer server = new RtmpServerBuilder()
+            var server = new RtmpServerBuilder()
                 .UseStartup<Startup>()
                 .UseWebSocket(c =>
                 {
                     c.BindEndPoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 8080);
                 })
                 .Build();
-            var tsk = server.StartAsync();
-            tsk.Wait();
+            await server.StartAsync();
         }
     }
 }

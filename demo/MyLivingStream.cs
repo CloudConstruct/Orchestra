@@ -1,15 +1,10 @@
-﻿using Harmonic.Controllers;
-using Harmonic.Controllers.Living;
-using Harmonic.Rpc;
-using Harmonic.Service;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Orchestra.Controllers.Living;
+using Orchestra.Rpc;
+using Orchestra.Service;
 using System.Threading.Tasks;
 
 namespace demo
 {
-    [NeverRegister]
     public class MyLivingStream : LivingStream
     {
         public MyLivingStream(PublisherSessionService publisherSessionService) : base(publisherSessionService)
@@ -17,7 +12,7 @@ namespace demo
         }
 
         [RpcMethod("play")]
-        public new async Task Play(
+        public override async Task Play(
             [FromOptionalArgument] string streamName,
             [FromOptionalArgument] double start = -1,
             [FromOptionalArgument] double duration = -1,
