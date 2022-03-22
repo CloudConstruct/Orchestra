@@ -1,10 +1,12 @@
-﻿using Orchestra.Controllers.Living;
+﻿using Orchestra.Controllers;
+using Orchestra.Controllers.Living;
 using Orchestra.Rpc;
 using Orchestra.Service;
 using System.Threading.Tasks;
 
 namespace demo
 {
+    [NeverRegister]
     public class MyLivingStream : LivingStream
     {
         public MyLivingStream(PublisherSessionService publisherSessionService) : base(publisherSessionService)
