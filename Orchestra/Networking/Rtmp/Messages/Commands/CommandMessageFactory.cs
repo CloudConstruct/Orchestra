@@ -40,8 +40,8 @@ namespace Orchestra.Networking.Rtmp.Messages.Commands
 
         public Message Provide(MessageHeader header, SerializationContext context, out int consumed)
         {
-            string name = null;
             bool amf3 = false;
+            string name;
             if (header.MessageType == MessageType.Amf0Command)
             {
                 if (!context.Amf0Reader.TryGetString(context.ReadBuffer.Span, out name, out consumed))

@@ -21,14 +21,16 @@ namespace Orchestra.Hosting
         internal RtmpServer(RtmpServerOptions options, WebSocketOptions webSocketOptions)
         {
             _options = options;
-            _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _listener.NoDelay = true;
+            _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+            {
+                NoDelay = true
+            };
             _listener.Bind(options.RtmpEndPoint);
             _listener.Listen(128);
             _webSocketOptions = webSocketOptions;
-            if (webSocketOptions != null)
+            if (webSocketOptions?.BindEndPoint != null)
             {
-                _webSocketServer = new WebSocketServer($"{(options.Cert == null ? "ws" : "wss")}://{webSocketOptions.BindEndPoint.ToString()}");
+                _webSocketServer = new WebSocketServer($"{(options.Cert == null ? "ws" : "wss")}://{webSocketOptions.BindEndPoint}");
 
             }
 

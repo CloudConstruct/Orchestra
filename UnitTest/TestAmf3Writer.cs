@@ -1,15 +1,9 @@
-﻿using Harmonic.Buffers;
-using Harmonic.Networking.Amf.Attributes;
-using Harmonic.Networking.Amf.Common;
-using Harmonic.Networking.Amf.Data;
-using Harmonic.Networking.Amf.Serialization.Amf3;
-using Harmonic.Networking.Amf.Serialization.Attributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Orchestra.Networking.Amf.Common;
+using Orchestra.Networking.Amf.Serialization.Amf3;
+using Orchestra.Networking.Amf.Serialization.Attributes;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace UnitTest
@@ -114,7 +108,7 @@ namespace UnitTest
 
             using (var sc = new SerializationContext())
             {
-                writer.WriteBytes(new Harmonic.Networking.Amf.Common.Undefined(), sc);
+                writer.WriteBytes(new Undefined(), sc);
                 var buffer = new byte[sc.MessageLength];
                 sc.GetMessage(buffer);
 
@@ -233,9 +227,9 @@ namespace UnitTest
             var reader = new Amf3Reader();
             var writer = new Amf3Writer();
 
-            reader.RegisterExternalizable<iexternalizable>();
+            reader.RegisterExternalizable<Iexternalizable>();
 
-            var ext = new iexternalizable()
+            var ext = new Iexternalizable()
             {
                 v1 = 0.1,
                 v2 = 1
@@ -248,7 +242,7 @@ namespace UnitTest
                 sc.GetMessage(buffer);
 
                 Assert.IsTrue(reader.TryGetObject(buffer, out var readVal, out var consumed));
-                var val = (iexternalizable)readVal;
+                var val = (Iexternalizable)readVal;
 
                 Assert.AreEqual(val.v1, ext.v1);
                 Assert.AreEqual(val.v2, ext.v2);
@@ -257,10 +251,10 @@ namespace UnitTest
 
         }
 
-        public class TestCls2: IEquatable<TestCls2>
+        public class TestCls2 : IEquatable<TestCls2>
         {
             [ClassField]
-            public double t1 {get;set;}
+            public double t1 { get; set; }
 
             public bool Equals(TestCls2 other)
             {
@@ -340,7 +334,7 @@ namespace UnitTest
             var reader = new Amf3Reader();
             var writer = new Amf3Writer();
             reader.RegisterTypedObject<TestCls>();
-            
+
             var t = new TestCls()
             {
                 T1 = 3.3,

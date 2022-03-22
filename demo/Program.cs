@@ -9,7 +9,6 @@ namespace demo
         static async Task Main(string[] _)
         {
             var server = new RtmpServerBuilder()
-                .UseStartup<Startup>()
                 .UseWebSocket(c =>
                 {
                     c.BindEndPoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 8080);

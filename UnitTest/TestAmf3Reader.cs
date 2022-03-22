@@ -1,16 +1,14 @@
-﻿using Harmonic.Buffers;
-using Harmonic.Networking.Amf.Attributes;
-using Harmonic.Networking.Amf.Common;
-using Harmonic.Networking.Amf.Data;
-using Harmonic.Networking.Amf.Serialization.Amf0;
-using Harmonic.Networking.Amf.Serialization.Amf3;
-using Harmonic.Networking.Amf.Serialization.Attributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Orchestra.Buffers;
+using Orchestra.Networking.Amf.Common;
+using Orchestra.Networking.Amf.Data;
+using Orchestra.Networking.Amf.Serialization.Amf0;
+using Orchestra.Networking.Amf.Serialization.Amf3;
+using Orchestra.Networking.Amf.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace UnitTest
 {
@@ -49,9 +47,14 @@ namespace UnitTest
             }
             return base.Equals(obj);
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class iexternalizable : IExternalizable
+    public class Iexternalizable : IExternalizable
     {
         public double v1;
         public int v2;
@@ -556,14 +559,14 @@ namespace UnitTest
         public void TestReadExternalizable()
         {
             var reader = new Amf3Reader();
-            reader.RegisterExternalizable<iexternalizable>();
+            reader.RegisterExternalizable<Iexternalizable>();
             using (var f = new FileStream("../../../../samples/amf3/misc/externalizable.amf3", FileMode.Open))
             {
                 var data = new byte[f.Length];
                 f.Read(data);
 
                 Assert.IsTrue(reader.TryGetObject(data, out var dataRead, out var consumed));
-                var ie = (iexternalizable)dataRead;
+                var ie = (Iexternalizable)dataRead;
                 Assert.AreEqual(ie.v1, 3.14);
                 Assert.AreEqual(ie.v2, 333);
 

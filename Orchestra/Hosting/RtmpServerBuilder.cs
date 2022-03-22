@@ -14,9 +14,8 @@ namespace Orchestra.Hosting
         private X509Certificate2 _cert = null;
         private bool _useWebSocket = false;
         private bool _useSsl = false;
-        private WebSocketOptions _websocketOptions = null;
-
-        private RtmpServerOptions _options = null;
+        private WebSocketOptions _websocketOptions = new();
+        private RtmpServerOptions _options = new();
 
         public RtmpServerBuilder UseStartup<T>() where T : IStartup, new()
         {
@@ -30,18 +29,16 @@ namespace Orchestra.Hosting
             return this;
         }
 
-        public RtmpServerBuilder UseWebSocket(Action<WebSocketOptions> conf)
+        public RtmpServerBuilder UseWebSocket(Action<WebSocketOptions> conf = null)
         {
             _useWebSocket = true;
-            _websocketOptions = new WebSocketOptions();
-            conf(_websocketOptions);
+            conf?.Invoke(_websocketOptions);
             return this;
         }
 
-        public RtmpServerBuilder UseRtmp(Action<RtmpServerOptions> config)
+        public RtmpServerBuilder UseRtmp(Action<RtmpServerOptions> config = null)
         {
-            _options = new RtmpServerOptions();
-            config(_options);
+            config?.Invoke(_options);
             return this;
         }
 

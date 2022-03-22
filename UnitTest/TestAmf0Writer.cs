@@ -1,14 +1,11 @@
-﻿using Harmonic.Networking.Amf.Attributes;
-using Harmonic.Networking.Amf.Common;
-using Harmonic.Networking.Amf.Data;
-using Harmonic.Networking.Amf.Serialization.Amf0;
-using Harmonic.Networking.Amf.Serialization.Attributes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Orchestra.Networking.Amf.Common;
+using Orchestra.Networking.Amf.Data;
+using Orchestra.Networking.Amf.Serialization.Amf0;
+using Orchestra.Networking.Amf.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace UnitTest

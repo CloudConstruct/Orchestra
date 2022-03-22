@@ -1,12 +1,9 @@
-﻿using Harmonic.Networking.Amf.Attributes;
-using Harmonic.Networking.Amf.Data;
-using Harmonic.Networking.Amf.Serialization.Amf0;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Orchestra.Networking.Amf.Serialization.Amf0;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace UnitTest
 {
@@ -197,7 +194,7 @@ namespace UnitTest
                 Assert.AreEqual(consumed, f.Length);
             }
         }
-        
+
         [TestMethod]
         public void TestReadEcmaArray()
         {
@@ -237,7 +234,7 @@ namespace UnitTest
                 Assert.AreEqual(consumed, data.Length);
             }
         }
-        
+
         [TestMethod]
         public void TestPacket()
         {
